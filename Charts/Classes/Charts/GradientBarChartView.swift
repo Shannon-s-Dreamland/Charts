@@ -10,15 +10,23 @@ import UIKit
 
 public class GradientBarChartView: BarChartView
 {
-    public var top = NSUIColor.lightGrayColor()
-    public var bottom = NSUIColor.blackColor()
+    public var top = NSUIColor.redColor() {
+        didSet {
+            (renderer as! GradientBarChartRenderer).topColor = top
+        }
+    }
+    public var bottom = NSUIColor.blueColor() {
+        didSet {
+            (renderer as! GradientBarChartRenderer).bottomColor = bottom
+        }
+    }
     
     public init(top: NSUIColor, bottom: NSUIColor)
     {
-        super.init(frame: CGRect.zero)
-        
         self.top = top
         self.bottom = bottom
+        
+        super.init(frame: CGRect.zero)
     }
     
     public required init?(coder aDecoder: NSCoder)
