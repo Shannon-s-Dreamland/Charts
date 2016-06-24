@@ -27,7 +27,8 @@
     [super viewDidLoad];
     
     self.title = @"Colored Line Chart";
-    
+  
+  
     for (int i = 0; i < _chartViews.count; i++)
     {
         LineChartData *data = [self dataWithCount:36 range:100];
@@ -42,6 +43,12 @@
         
         [self setupChart:_chartViews[i] data:data color:colors[i % colors.count]];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  ((UIScrollView *)self.view).contentSize = CGSizeMake(self.view.bounds.size.width, 1000);
 }
 
 - (void)setupChart:(LineChartView *)chart data:(LineChartData *)data color:(UIColor *)color
@@ -59,7 +66,7 @@
     [chart setScaleEnabled:YES];
     chart.pinchZoomEnabled = NO;
     [chart setViewPortOffsetsWithLeft:10.0 top:0.0 right:10.0 bottom:0.0];
-    
+  [chart zoom:8.0 scaleY:1.0 x:0 y:0];
     chart.legend.enabled = NO;
     
     chart.leftAxis.enabled = NO;
