@@ -734,6 +734,11 @@ public class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChar
     
     @objc private func panGestureRecognized(recognizer: NSUIPanGestureRecognizer)
     {
+        if recognizer.translationInView(nil).y > 5
+        {
+          return
+        }
+      
         if (recognizer.state == NSUIGestureRecognizerState.Began && recognizer.nsuiNumberOfTouches() > 0)
         {
             stopDeceleration()
